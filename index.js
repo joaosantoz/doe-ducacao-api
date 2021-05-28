@@ -19,6 +19,6 @@ app.use(express.json());
 
 app.listen(3003);
 
-app.use("/api/user", UserRoute);
+app.use("/api", UserRoute);
 
 console.log("pronto");

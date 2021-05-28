@@ -1,8 +1,8 @@
-const User = require("../models/User");
+const Cards = require("../models/Cards");
 
-//Show list of users
-const indexUser = (req, res, next) => {
-  User.find()
+//Show all cards
+const indexCards = (req, res, next) => {
+  Cards.find()
     .then((response) => {
       res.json({
         response,
@@ -15,13 +15,15 @@ const indexUser = (req, res, next) => {
     });
 };
 
-//Store a user
-const storeUser = (req, res, next) => {
-  let user = new User({
-    login: req.body.login,
-    password: req.body.password,
+//Store cards
+const storeCards = (req, res, next) => {
+  let cards = new Cards({
+    title: req.body.title,
+    subtitle: req.body.subtitle,
+    text: req.body.text,
+    image: req.body.image,
   });
-  user
+  cards
     .save()
     .then((response) => {
       res.json({
@@ -36,6 +38,6 @@ const storeUser = (req, res, next) => {
 };
 
 module.exports = {
-  indexUser,
-  storeUser,
+  indexCards,
+  storeCards,
 };
