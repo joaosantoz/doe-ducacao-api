@@ -1,6 +1,6 @@
 # doe-ducacao-api
 
-### API para autenticação de login do projeto doe-ducacao
+### API para autenticação de login e criação de cards do projeto doe-ducacao
 ### Repositório principal: https://github.com/joaosantoz/doe-ducacao
 
 ## Ferramentas
