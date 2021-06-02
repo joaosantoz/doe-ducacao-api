@@ -1,0 +1,238 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API criada para o projeto Doe-ducacao, principais funções são, CRUD dos cards de locais e autenticação para administradores do projeto.",
+    "version": "1.0.0",
+    "title": "Doe-ducacao",
+    "contact": {
+      "email": "jvsantosdev@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "users",
+      "description": "Cadastro e login de administradores"
+    },
+    {
+      "name": "cards",
+      "description": "Rota de CRUD dos cards"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Lista todos os usuários registrados",
+        "description": "",
+        "operationId": "showUsers",
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/users/store": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Registra um novo usuário",
+        "description": "",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "User Info",
+            "description": "Dados do usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registrado com sucesso!"
+          },
+          "400": {
+            "description": "Ocorreu um erro!"
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Faz uma requisição de autenticação",
+        "description": "",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "User Info",
+            "description": "Dados do usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logado com sucesso!"
+          },
+          "400": {
+            "description": "Ocorreu um erro!"
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          }
+        }
+      }
+    },
+    "/api/cards": {
+      "get": {
+        "tags": [
+          "cards"
+        ],
+        "summary": "Lista todos os cards",
+        "description": "",
+        "operationId": "showCards",
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        }
+      }
+    },
+    "/api/cards/store": {
+      "post": {
+        "tags": [
+          "cards"
+        ],
+        "summary": "Cria um Card novo",
+        "description": "",
+        "operationId": "createCard",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Card Info",
+            "description": "Informacoes do Card",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Card"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card criado com sucesso!"
+          },
+          "400": {
+            "description": "Ocorreu um erro!"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cards"
+        ],
+        "summary": "Deleta um Card existente",
+        "description": "",
+        "operationId": "deleteCard",
+        "parameters": [
+          {
+            "in": "body",
+            "required": true,
+            "name": "Card ID",
+            "description": "Identificacao do Card",
+            "schema": {
+              "properties": {
+                "cardId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Card deletado com sucesso!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Card": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
