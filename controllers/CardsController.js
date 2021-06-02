@@ -23,6 +23,9 @@ const storeCards = (req, res, next) => {
     text: req.body.text,
     image: req.body.image,
   });
+  if (req.file) {
+    cards.image = req.file.path;
+  }
   cards
     .save()
     .then((response) => {
@@ -37,7 +40,25 @@ const storeCards = (req, res, next) => {
     });
 };
 
+//Delete card
+const deleteCard = (req, res, next) => {
+  console.log(req.body);
+  let cardId = req.body.cardId;
+  Cards.findByIdAndDelete(cardId)
+    .then(() => {
+      res.json({
+        message: "Card deletado com sucesso!",
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: "Ocorreu um erro!",
+      });
+    });
+};
+
 module.exports = {
   indexCards,
   storeCards,
+  deleteCard,
 };

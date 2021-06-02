@@ -35,7 +35,39 @@ const storeUser = (req, res, next) => {
     });
 };
 
+//Login
+const loginUser = async (req, res, next) => {
+  var login = req.body.login;
+  var password = req.body.password;
+  var data = { login, password };
+
+  try {
+    const exists = await User.findOne(data);
+
+    if (exists === null) {
+      res.json({
+        status: 404,
+        message: "Usuário ou senha incorretos!",
+      })
+    } else {
+      res.json({
+        status: 200,
+        message: "Logado com sucesso!"
+      })
+    }
+
+
+
+  } catch (err) {
+    res.json({
+      status: 500,
+      message: "Ocorreu um erro! " + err
+    })
+  }
+};
+
 module.exports = {
   indexUser,
   storeUser,
+  loginUser,
 };
